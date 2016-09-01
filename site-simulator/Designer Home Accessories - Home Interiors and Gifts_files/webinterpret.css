@@ -1,0 +1,365 @@
+/*********************************************************************/
+/* UTILITIES */
+/*********************************************************************/
+
+.wi-t-uppercase {
+  text-transform: uppercase;
+}
+.wi-600 {
+  font-weight: 600;
+}
+
+/*********************************************************************/
+/* NORMAL */
+/*********************************************************************/
+
+#wi-cr {
+  visibility: hidden;
+  z-index: -9000;
+  position: fixed;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  line-height: 1.4;
+  background: none;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.25s ease;
+  -moz-transition: background-color 0.25s ease;
+  -webkit-transition: background-color 0.25s ease;
+}
+#wi-cr.wi-is-visible {
+  visibility: visible;
+  z-index: 9999;/* In case the browser doesn't support higher indexes */
+  z-index: 9999999; /* Needed if another popup is in place */
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#wi-cr-container {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#wi-cr-modal {
+  font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif !important;
+  box-sizing: border-box;
+  position: relative;
+  width: 95%;
+  max-width: 600px;
+  margin: 30px auto 20px auto;
+  padding: 60px 15px 30px 15px;
+  text-align: center;
+  color: #333;
+  border: 1px solid #000;
+  background: white;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  -webkit-transition: opacity 0.25s ease;
+}
+#wi-cr-modal.wi-cr-modal--discount {
+  margin: 50px auto 20px auto;
+}
+#wi-cr.wi-is-visible #wi-cr-modal {
+  opacity: 1;
+}
+
+#wi-cr-badge {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  margin-left: -40px;
+  width: 80px;
+  height: 80px;
+  font-size: 24px;
+  line-height: 80px;
+  background: url("../img/star.svg") center no-repeat;
+  color: #fff;
+  text-shadow: 0 1px 2px #74a556;
+}
+#wi-cr-percentage {
+  font-size: 18px;
+  vertical-align: baseline;
+  top: 0;
+}
+
+#wi-cr-title {
+  color: #009ddf;
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+#wi-sep {
+  width: 100px;
+  height: 1px;
+  border: none;
+  margin: auto;
+  background-color: #009ddf;
+}
+
+#wi-cr-logo {
+  margin: 20px 0;
+  max-width: 80%;
+  max-height: 100px;
+}
+
+#wi-cr-text {
+  font-weight: normal;
+  font-size: 13px;
+  margin-bottom: 30px;
+}
+
+#wi-cr-button {
+  background: #a0cf84;
+  border: none;
+  border-bottom:  3px #74a556 solid;
+  border-radius: 2px;
+  color: #fff;
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px #74a556;
+}
+#wi-cr-button:focus, #wi-cr-button:active {
+  margin-top: 3px;
+  border-bottom: 0;
+}
+
+#wi-cr-close {
+  text-decoration: underline;
+  color: #a5a5a5;
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  margin: 20px auto 0 auto;
+  display: block;
+  cursor: pointer;
+}
+
+#wi-cr.ie8 {
+  background:transparent;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#40000000,endColorstr=#40000000);
+  zoom: 1;
+}
+
+@media (min-height: 600px) {
+  #wi-cr {
+    display: table;
+  }
+}
+@media (min-width: 767px) {
+  #wi-cr-modal {
+    padding: 60px 60px 30px 60px;
+  }
+  #wi-cr-badge {
+    top: -54px;
+    margin-left: -54px;
+    width: 107px;
+    height: 107px;
+    font-size: 38px;
+    line-height: 106px;
+  }
+  #wi-cr-percentage {
+    font-size: 24px;
+  }
+
+  #wi-cr-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  #wi-cr-logo {
+    margin: 30px 0;
+  }
+
+  #wi-cr-text {
+    font-size: 18px;
+  }
+
+  #wi-cr-button {
+    padding: 15px 30px;
+    font-size: 18px;
+  }
+
+  #wi-cr-close {
+    margin: 10px auto 0 auto;
+  }
+}
+
+/*********************************************************************/
+
+.wi-popupOpen {
+  overflow: hidden;
+  max-height: 100%;
+}
+
+#wi-overlay {
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.55);
+
+  -webkit-transition: opacity 0.4s ease, visibility 0.8s linear;
+  -moz-transition: opacity 0.4s ease, visibility 0.8s linear;
+  -o-transition: opacity 0.4s ease, visibility 0.8s linear;
+  transition: opacity 0.4s ease, visibility 0.8s linear;
+}
+
+#wi-overlay.wi-is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#wi-overlay.wi-is-hidden, #wi-fixedBar.wi-is-hidden {
+  display: none;
+}
+
+#wi-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#wi-fixedBar {
+  z-index: 9999;
+  position: fixed;
+  top: auto;
+  left: 0;
+  bottom: -40px;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  padding: 7px 10px 47px 10px;
+  font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif !important;
+  line-height: 32px;
+  color: white;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-name: wi-bounceOutDown;
+  animation-name: wi-bounceOutDown;
+}
+
+#wi-fixedBar.wi-is-visible {
+  -webkit-animation-name: wi-bounceInUp;
+  animation-name: wi-bounceInUp;
+}
+
+#wi-fixedBar a {
+  color: inherit;
+}
+
+#wi-fixedBar .wi-link {
+  color: #009ddf;
+
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+#wi-fixedBar .wi-link:hover,
+#wi-fixedBar .wi-link:focus,
+#wi-fixedBar .wi-link:active,
+#wi-fixedBar a:hover .wi-link,
+#wi-fixedBar a:focus .wi-link,
+#wi-fixedBar a:active .wi-link {
+  color: inherit;
+}
+
+#wi-fixedBar #wi-hideGlopal {
+  float: right;
+  height: 32px;
+}
+
+#wi-fixedBar #wi-flag {
+  display: inline-block;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  border: 2px solid white;
+  margin-right: 10px;
+  overflow: hidden;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+
+  -webkit-box-shadow: 1px 1px 1px #000;
+  -moz-box-shadow: 1px 1px 1px #000;
+  -o-box-shadow: 1px 1px 1px #000;
+  box-shadow: 1px 1px 1px #000;
+}
+
+#wi-fixedBar #wi-flag img {
+  display: block;
+  max-width: 100%;
+}
+
+@media (max-width: 765px) {
+  .wi-visible-xs {
+    display: inline;
+  }
+
+  .wi-hidden-xs {
+    display: none;
+  }
+
+  .wi-popupOpen {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 766px) {
+  .wi-hidden-xs {
+    display: inline;
+  }
+
+  .wi-visible-xs {
+    display: none;
+  }
+}
+
+@-webkit-keyframes wi-bounceInUp {
+  0% {-webkit-transform: translateY(2000px); opacity: 0;}
+  60% {-webkit-transform: translateY(-30px); opacity: 1;}
+  80% {-webkit-transform: translateY(10px);}
+  100% {-webkit-transform: translateY(0); opacity: 1;}
+}
+
+@keyframes wi-bounceInUp {
+  0% {transform: translateY(2000px); opacity: 0;}
+  60% {transform: translateY(-30px); opacity: 1;}
+  80% {transform: translateY(10px);}
+  100% {transform: translateY(0); opacity: 1;}
+}
+
+@-webkit-keyframes wi-bounceOutDown {
+  0% {-webkit-transform: translateY(0);}
+  20% {-webkit-transform: translateY(-20px); opacity: 1;}
+  100% {-webkit-transform: translateY(2000px); opacity: 0;}
+}
+
+@keyframes wi-bounceOutDown {
+  0% {transform: translateY(0);}
+  20% {transform: translateY(-20px); opacity: 1;}
+  100% {transform: translateY(2000px); opacity: 0;}
+}
+
