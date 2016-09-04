@@ -1,0 +1,1 @@
+(function(a){a.version="1.4"}(window._4TellBoost=window._4TellBoost||{}));
