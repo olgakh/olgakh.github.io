@@ -58,8 +58,17 @@
       var destination = document.getElementById("ab");
       destination.appendChild(source);
     }
+function insertWidget() {
+ 	window._taboola = window._taboola || [];
+ 	 _taboola.push({
+	    mode: 'hybrid-text-under',
+	    container: 'taboola-below',
+	    placement: 'Below Article Thumbnails Orig',
+	    target_type: 'video'
+	  });
+  }
 </script>
-	
+<button type="button" onclick="insertWidget()">Insert Widget</button>	
 <button type="button" onclick="moveWidget()">Move Widget</button>
 
 <script>
